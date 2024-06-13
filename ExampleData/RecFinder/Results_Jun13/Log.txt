@@ -1,0 +1,7 @@
+2024-06-13 12:47:25 : Started OrthoFinder version 1.0.0
+Command Line: /home/yiliu/recurrent_evolution/.venv/bin/recfinder -f ExampleData -st codon11 --outgroups Euryale ferox --spofin ExampleData/28_species_of_interest.txt -a 6
+
+Tree program: iqtree
+Codon model: CODON11
+
+WorkingDirectory_Base: /home/yiliu/recurrent_evolution/RecFinder/ExampleData/RecFinder/Results_Jun13/Real_Phylogeny/

@@ -1,0 +1,119 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "recfinder"
+authors = [
+    {name = "Elizabeth Robbins", email = "lizzie.robbins1@gmail.com"},
+    {name = "Yi Liu", email = "caoxen7ys@yahoo.com"}
+]
+description = "recurrant evolution"
+readme = "README.md"
+version= "2.0.0"
+requires-python = ">=3.8"
+keywords = [
+    "Reccurant Evolution",
+    "Monte-Carlo",  
+    "Phylogeneticrelationships"
+]
+license = { file = "License" }
+classifiers = [
+    # How mature is this project? Common values are
+    #   3 - Alpha
+    #   4 - Beta
+    #   5 - Production/Stable
+    'Development Status :: 4 - Beta',
+
+    # Indicate who your project is intended for
+    'Intended Audience :: Science/Research',
+    'Topic :: Scientific/Engineering :: Bio-Informatics',
+
+    # Pick your license as you wish (should match "license" above)
+    'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
+
+    # Specify the Python versions you support here.
+    'Programming Language :: Python :: 3.8', # 
+    'Programming Language :: Python :: 3.9', # 
+    "Programming Language :: Python :: 3.10", # base version
+    "Programming Language :: Python :: 3.11", # 
+    "Programming Language :: Python :: 3.12", # 
+]
+dependencies = [
+    "numpy",
+    "scipy",
+    "pandas",
+    "dendropy",
+]
+
+    [project.urls]
+    repository = "https://github.com/ElizabethRobbins/RecFinder"
+
+    [project.optional-dependencies]
+    build = ["build", "twine"]
+    dev = [
+        "python-semantic-release",
+        "mypy",
+        "pytest",
+        "pytest-cov",
+        "tox",
+        "seaborn",
+        "delayed-assert",
+        "flake8",
+        "pylint",
+        "black",
+        "build",
+        "wheel",
+        "setuptools>=64",
+        "setuptools_scm>=8"
+    ]
+
+    [project.scripts]
+    recfinder = "recfinder.run.__main__:main"
+
+[tool.semantic_release]
+version_variable = "pyproject.toml:version"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = [
+    "recfinder",
+]
+
+[tool.setuptools.package-data]
+"recfinder.genetic_codes" = ["*"]
+"ExampleData" = ["*"]
+
+[tool.setuptools.exclude-package-data]
+mypkg = ["tests"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=recfinder"
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "disabled: marks tests as disabled (deselect with '-m \"not disabled\"')",
+    "regression: marks a test as a regression test",
+]
+
+[tool.mypy]
+mypy_path = "src"
+check_untyped_defs = true
+disallow_any_generics = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+no_implicit_reexport = true
+
+[tool.setuptools_scm]
+version_file = "src/recfinder/_version.py"
+version_scheme = "no-guess-dev"
+root = "."  
+tag_regex = "^(?P<prefix>v)?(?P<version>[^\\+]+)(?P<suffix>.*)?$"
+fallback_version = "2.0.0"
+local_scheme = "dirty"
